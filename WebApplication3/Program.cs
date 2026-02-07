@@ -1,22 +1,22 @@
 var builder = WebApplication.CreateBuilder(args);
 
-// Добавляем контроллеры (для Web API)
+
 builder.Services.AddControllers();
 
 var app = builder.Build();
 
-// Включаем роутинг
+
 app.UseRouting();
 
 app.UseAuthorization();
 
-// Маппим контроллеры
+
 app.MapControllers();
 
-// Добавляем простой endpoint для проверки
+
 app.MapGet("/", () => "API is running. Go to /browser endpoint");
 
-// Ваш endpoint /browser
+
 app.MapGet("/browser", (HttpContext context) =>
 {
     var userAgent = context.Request.Headers["User-Agent"].ToString();
@@ -49,11 +49,11 @@ app.MapGet("/browser", (HttpContext context) =>
         else if (ua.Contains("android")) os = "Android";
     }
 
-    var result = $"=== АНАЛИЗ BROWSER ===\n" +
+    var result = $"=== ГЂГЌГЂГ‹Г€Г‡ BROWSER ===\n" +
                 $"User-Agent: {userAgent}\n" +
-                $"Браузер: {browser}\n" +
-                $"Устройство: {device}\n" +
-                $"ОС: {os}";
+                $"ГЃГ°Г ГіГ§ГҐГ°: {browser}\n" +
+                $"Г“Г±ГІГ°Г®Г©Г±ГІГўГ®: {device}\n" +
+                $"ГЋГ‘: {os}";
 
     return Results.Text(result, "text/plain");
 });
